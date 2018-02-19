@@ -1,6 +1,6 @@
 # Joseki.jl
 
-Want to make an API in Julia but not sure where to start?  Newer versions of [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl) have everything you need to build one from scratch, but getting started can be a bit intimidating at the moment.  Joseki.jl is a set of examples and tools to help you start.  It's inspired by [Mux.jl](https://github.com/JuliaWeb/Mux.jl) and [Express](https://expressjs.com/).  
+Want to make an API in Julia but not sure where to start?  Newer versions of [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl) have everything you need to build one from scratch, but getting started can be a bit intimidating at the moment.  Joseki.jl is a set of examples and tools to help you on your way.  It's inspired by [Mux.jl](https://github.com/JuliaWeb/Mux.jl) and [Express](https://expressjs.com/).  
 
 ## The basics
 
@@ -15,7 +15,7 @@ To install Joseki.jl, run `Pkg.clone("https://github.com/amellnik/Joseki.jl.git"
 ```julia
 using Joseki, JSON
 
-### Create some Endpoints
+### Create some endpoints
 
 # This function takes two numbers x and y from the query string and returns x^y
 # In this case they need to be identified by name and it should be called with
@@ -23,11 +23,10 @@ using Joseki, JSON
 function pow(req::HTTP.Request)
     j = HTTP.queryparams(HTTP.URI(req.target))
     if !(haskey(j, "x")&haskey(j, "y"))
-        return error_responder(req,
-            "You need to specify values for x and y!")
+        return error_responder(req, "You need to specify values for x and y!")
     end
-    # Try to parse the values as numbers.  If there's an error here
-    # the generic error handler will deal with it
+    # Try to parse the values as numbers.  If there's an error here the generic
+    # error handler will deal with it.
     x = parse(Float32, j["x"])
     y = parse(Float32, j["y"])
     json_responder(req, x^y)
@@ -42,15 +41,14 @@ function bin(req::HTTP.Request)
         return error_responder(req, "I was expecting a json request body!")
     end
     if !(haskey(j, "n")&haskey(j, "k"))
-        return error_responder(req,
-            "You need to specify values for n and k!")
+        return error_responder(req, "You need to specify values for n and k!")
     end
     json_responder(req, binomial(j["n"],j["k"]))
 end
 
 ### Create and run the server
 
-# Make a router and add routes for our endpoints
+# Make a router and add routes for our endpoints.
 router = HTTP.Router()
 mw = Joseki.default_middleware
 HTTP.register!(router, "GET", "/pow",
