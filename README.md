@@ -83,6 +83,30 @@ or use a tool like [Postman](https://www.getpostman.com/).
 
 You can modify or add to the default middleware stack, write your own responders, or create additional endpoints.  
 
-## Deploying
+## Containers and deploying
 
-TODO: discuss creating a DockerFile and deploying to a service like Heroku.  
+In many cases you will want to deploy your API as a Docker container.  This makes it possible to deploy to most hosting services.  This folder contains a Dockerfile that demonstrates hosting the example above (with a few minor modifications to make it work in Docker).  
+
+To build the image you can run
+
+```
+docker build -t joseki .
+```
+
+from this folder and then run
+
+```
+docker run --rm -p 8000:8000 joseki
+```
+
+to start the server.  If you need to debug anything you can start an interactive session with
+
+```
+docker run --rm -p 8000:8000 -it --entrypoint=/bin/bash joseki
+```
+
+How you deploy it will depend on your hosting provider.  When you deploy your own API you will need to modify both the julia server file and possibly also the Dockerfile (to add additional dependencies).  
+
+## TODO: Common tasks to add
+* Handling long-running tasks
+* Serving up static files
