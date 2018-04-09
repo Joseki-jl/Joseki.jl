@@ -42,7 +42,10 @@ The response will look like:
 # Endpoints can do their own error checking.  Errors caught by them
 # return a 200-code JSON response that has a key 'error' set to true
 function error_responder(req::HTTP.Request, e::String)
-    b = """{"error": true, "message": "$(e)"}"""
+    # Make sure we don't have unescaped quotes in the error string since
+    # we are going to return it as a json
+    ee = replace(e, r"(?<!\\)(?:\\{2})*\K\"", "\\\"")
+    b = """{"error": true, "message": "$(ee)"}"""
     req.response.body = bytes(b)
     return req.response
 end
