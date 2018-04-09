@@ -69,7 +69,7 @@ If you run this example you can try it out by going to http://localhost:8000/pow
 
 In order to test the 2nd endpoint, you can make a POST request with cURL:
 
-```
+```shell
 curl -X POST \
   http://localhost:8000/bin \
   -H 'Cache-Control: no-cache' \
@@ -89,24 +89,29 @@ In many cases you will want to deploy your API as a Docker container.  This make
 
 To build the image you can run
 
-```
+```shell
 docker build -t joseki .
 ```
 
 from this folder and then run
 
-```
+```shell
 docker run --rm -p 8000:8000 joseki
 ```
 
 to start the server.  If you need to debug anything you can start an interactive session with
 
-```
+```shell
 docker run --rm -p 8000:8000 -it --entrypoint=/bin/bash joseki
 ```
 
 How you deploy it will depend on your hosting provider.  When you deploy your own API you will need to modify both the julia server file and possibly also the Dockerfile (to add additional dependencies).  
 
-## TODO: Common tasks to add
+## TODO
+
+Common tasks to add examples for:
 * Handling long-running tasks
 * Serving up static files
+
+Minor convenience functions to add:
+* Easy way to check for required query parameters / json body parameters
