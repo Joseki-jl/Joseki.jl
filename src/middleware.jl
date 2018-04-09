@@ -7,8 +7,8 @@ error otherwise.
 """
 function add_cors(req::HTTP.Request)
     orig = HTTP.Messages.header(req, "Origin")
-    push!(req.response.headers, Pair("'Access-Control-Allow-Origin'", orig))
-    push!(req.response.headers, Pair("Access-Control-Allow-Methods", "POST, GET"))
+    push!(req.response.headers, Pair("Access-Control-Allow-Origin", orig))
+    push!(req.response.headers, Pair("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS"))
     return req
 end
 
