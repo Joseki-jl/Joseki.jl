@@ -28,8 +28,6 @@ function stack(fns::Array{Function, 1}, endpoint::Function;
         try
             for f! in fns
                 f!(req)
-                # Allow middleware to abort the stack and return a response
-                req.response.status != 0 && return req.response
             end
             return endpoint(req)
         catch err
