@@ -50,14 +50,14 @@ function error_responder(req::HTTP.Request, e::String)
     return req.response
 end
 
-# If we thing the julia error will be clear to the user then we can just use
+# If we think the julia error will be clear to the user then we can just use
 # that.
 error_responder(req::HTTP.Request, e::Exception) =
     error_responder(req, string(e))
 
-# Sometimes things go terribly wrong and we don't get a response. In this case
-# we return the error text in the same format but set the status code to 500.
-function error_responder(e::Exception)
-    println("Unhandled error!  You probably want to catch these.")
-    return HTTP.Response(500, """{"error": true, "message": "$(e)"}""")
+# Our default error responder includes a reminder to explicitly catch errors
+# when possible
+function unhandled_error_responder(req::HTTP.Request,e::Exception)
+    println("Unhandled error!  You probably want to catch these: ", string(e))
+    error_responder(req, string(e))
 end

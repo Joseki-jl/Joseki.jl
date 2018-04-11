@@ -20,7 +20,7 @@ requests that cause an unhandled error respond with the default HTTP.jl
 rendering of that error (a plain text string).
 """
 function stack(fns::Array{Function, 1}, endpoint::Function;
-               error_fn=(req, err)->rethrow(err))
+               error_fn=unhandled_error_responder)
     # First we form the function that represents our middleware + endpoint
     # wrapped in a try-catch block so that we can deal with errors that are not
     # explicitly handled.
