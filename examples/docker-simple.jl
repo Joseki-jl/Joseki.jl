@@ -34,17 +34,15 @@ end
 ### Create and run the server
 
 # Make a router and add routes for our endpoints.
-router = HTTP.Router()
-mw = Joseki.default_middleware
-HTTP.register!(router, "GET", "/pow",
-    stack(mw, pow; error_fn=Joseki.error_responder))
-HTTP.register!(router, "POST", "/bin",
-    stack(mw, bin; error_fn=Joseki.error_responder))
+endpoints = [
+    (pow, "GET", "/pow"),
+    (bin, "POST", "/bin")
+]
+s = Joseki.server(endpoints)
 
-# Fire up the server
-s = HTTP.Servers.Server(router)
 # If there is a PORT environment variable defined us it, otherwise use 8000
 haskey(ENV, "PORT") ? port = ENV["PORT"] : port = 8000
 # Figure out what the local IP is
 ip = IPv4(split(readstring(`hostname -I`))[1])
+# Fire up the server
 HTTP.serve(s, ip, port; verbose=false)
