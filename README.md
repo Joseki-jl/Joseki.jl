@@ -6,7 +6,7 @@ Want to make an API in Julia but not sure where to start?  Newer versions of [HT
 
 Middleware in Joseki is any function that takes a `HTTP.Request` and modifies it (and the associated response).  Endpoints are functions that accept a `HTTP.Request` and returns a modified version of its associated `HTTP.Response`.  Typically any request is passed through the same set of middleware layers before being routed to a single endpoint.  
 
-You combine a set of middleware, an endpoint, and optionally an error-handling function with `stack(fns::Array{Function, 1}, endpoint::Function; error_fn=rethrow)` to create a `HTTP.HandlerFunction`.  This can be used with standard `HTTP.jl` methods to create a server.
+You combine a set of middleware, endpoints, and optionally an error-handling function with `Joseki.server(endpoints; middleware=default_middleware error_fn=error_responder)` to create a `HTTP.Server`.  This can be used with standard `HTTP.jl` methods to create a server.
 
 ## A simple example
 
@@ -104,12 +104,3 @@ docker run --rm -p 8000:8000 -it --entrypoint=/bin/bash joseki
 ```
 
 How you deploy it will depend on your hosting provider.  When you deploy your own API you will need to modify both the julia server file and possibly also the Dockerfile (to add additional dependencies).  
-
-## TODO
-
-Common tasks to add examples for:
-* Handling long-running tasks
-* Serving up static files
-
-Minor convenience functions to add:
-* Easy way to check for required query parameters / json body parameters

@@ -37,7 +37,7 @@ The response will look like:
     "error": true,
     "result": "You need to pass variables named x and y in the query string"
 }
-``
+```
 """
 # Endpoints can do their own error checking.  Errors caught by them
 # return a 200-code JSON response that has a key 'error' set to true
@@ -55,8 +55,11 @@ end
 error_responder(req::HTTP.Request, e::Exception) =
     error_responder(req, string(e))
 
-# Our default error responder includes a reminder to explicitly catch errors
-# when possible
+"""
+    unhandled_error_responder(req::HTTP.Request,e::Exception)
+
+The default error handler, not intended for use by users.  It includes a gentle reminder that errors should typically be caught elsewhere.
+"""
 function unhandled_error_responder(req::HTTP.Request,e::Exception)
     println("Unhandled error!  You probably want to catch these: ", string(e))
     error_responder(req, string(e))
