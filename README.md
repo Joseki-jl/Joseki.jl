@@ -2,6 +2,8 @@
 
 Want to make an API in Julia but not sure where to start?  Newer versions of [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl) have everything you need to build one from scratch, but getting started can be a bit intimidating at the moment.  Joseki.jl is a set of examples and tools to help you on your way.  It's inspired by [Mux.jl](https://github.com/JuliaWeb/Mux.jl) and [Express](https://expressjs.com/).  
 
+*Note: This package is under active development and breaking changes may occur at any time.*
+
 ## The basics
 
 Middleware in Joseki is any function that takes a `HTTP.Request` and modifies it (and the associated response).  Endpoints are functions that accept a `HTTP.Request` and returns a modified version of its associated `HTTP.Response`.  Typically any request is passed through the same set of middleware layers before being routed to a single endpoint.  
@@ -103,4 +105,4 @@ to start the server.  If you need to debug anything you can start an interactive
 docker run --rm -p 8000:8000 -it --entrypoint=/bin/bash joseki
 ```
 
-How you deploy it will depend on your hosting provider.  When you deploy your own API you will need to modify both the julia server file and possibly also the Dockerfile (to add additional dependencies).  
+How you deploy it will depend on your hosting provider.  When you deploy your own API you may need to modify the julia server file and/or the Dockerfile to add additional dependencies.  
