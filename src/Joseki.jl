@@ -1,6 +1,6 @@
 module Joseki
 
-using HTTP, JSON
+using HTTP, JSON, Dates
 import HTTP.IOExtras.bytes
 
 include("utilities.jl")
