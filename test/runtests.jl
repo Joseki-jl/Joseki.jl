@@ -1,7 +1,7 @@
 # These tests are closely based on the server tests in HTTP.jl:
 # https://github.com/JuliaWeb/HTTP.jl/blob/master/test/server.jl
 
-using HTTP, Joseki, JSON
+using HTTP, Joseki, JSON, Sockets
 @static if VERSION < v"0.7.0-DEV.2005"
     using Base.Test
 else
@@ -27,7 +27,7 @@ end
     ]
     server = Joseki.server(endpoints) # Default middleware
 
-    info("Starting test server")
+    @info "Starting test server"
     server_task = @async HTTP.serve(server, ip"127.0.0.1", 8000; verbose=false)
     sleep(1.0)
 

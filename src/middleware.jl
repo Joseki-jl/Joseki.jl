@@ -26,7 +26,7 @@ Log a line whenever you get a request.  HTTP.jl already does this.
 """
 function hit_logger!(req::HTTP.Request)
     println(req.method, " request to: ", req.target,
-        " at ", Dates.now())
+        " at ", now())
     return req
 end
 
