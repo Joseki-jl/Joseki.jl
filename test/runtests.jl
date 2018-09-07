@@ -35,7 +35,7 @@ end
     @test res.status == 200
     @test HTTP.hasheader(res, "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS")
 
-    info("Shutting down test server")
+    @info "Shutting down test server"
 
     put!(server.in, HTTP.Servers.KILL)
     sleep(2)
