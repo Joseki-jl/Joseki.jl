@@ -58,7 +58,7 @@ endpoints = [
 s = Joseki.server(endpoints)
 
 # Fire up the server
-HTTP.serve(s, ip"127.0.0.1", 8000; verbose=false)
+HTTP.serve(s, "127.0.0.1", 8000; verbose=false)
 ```
 
 If you run this example you can try it out by going to http://localhost:8000/pow/?x=2&y=3.  You should see a response like:
