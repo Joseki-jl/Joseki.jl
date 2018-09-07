@@ -9,6 +9,7 @@ function add_cors!(req::HTTP.Request)
     orig = HTTP.Messages.header(req, "Origin")
     push!(req.response.headers, Pair("Access-Control-Allow-Origin", orig))
     push!(req.response.headers, Pair("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS"))
+    push!(req.response.headers, Pair("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"))
     return req
 end
 
