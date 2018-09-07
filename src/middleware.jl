@@ -34,7 +34,7 @@ end
 Log the request body.
 """
 function body_logger!(req::HTTP.Request)
-    println(String(req.body))
+    println(String(copy(req.body)))
     return req
 end
 
