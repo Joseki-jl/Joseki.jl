@@ -39,5 +39,16 @@ function body_logger!(req::HTTP.Request)
     return req
 end
 
+"""
+Attempt to parse the body of the request as a JSON and throw an error if it's not a JSON.  The resulting dict is discarded and endpoints need to do this again since we currently don't have a way to store things like this in the request.  In performance critical applications this should not be used.
+"""
+function require_json_body!(req::HTTP.Request)
+    j = try
+        body_as_dict(req)
+    catch err
+        error("POST requests to this server must contain a JSON-encoded body.")
+    end
+end
+
 # Some default middleware
 default_middleware = [hit_logger!, body_logger!, add_cors!, content_type!]
