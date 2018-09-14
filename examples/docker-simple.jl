@@ -1,4 +1,4 @@
-using Joseki, JSON
+using Joseki, JSON, HTTP
 
 ### Create some endpoints
 
@@ -7,9 +7,7 @@ using Joseki, JSON
 # something like 'http://localhost:8000/pow/?x=2&y=3'
 function pow(req::HTTP.Request)
     j = HTTP.queryparams(HTTP.URI(req.target))
-    if !(haskey(j, "x")&haskey(j, "y"))
-        return error_responder(req, "You need to specify values for x and y!")
-    end
+    has_all_required_keys(["x", "y"], j) || return error_responder(req, "You need to specify values for x and y!")
     # Try to parse the values as numbers.  If there's an error here the generic
     # error handler will deal with it.
     x = parse(Float32, j["x"])
@@ -25,9 +23,7 @@ function bin(req::HTTP.Request)
     catch err
         return error_responder(req, "I was expecting a json request body!")
     end
-    if !(haskey(j, "n")&haskey(j, "k"))
-        return error_responder(req, "You need to specify values for n and k!")
-    end
+    has_all_required_keys(["n", "k"], j) || return error_responder(req, "You need to specify values for n and k!")
     json_responder(req, binomial(j["n"],j["k"]))
 end
 
@@ -42,7 +38,5 @@ s = Joseki.server(endpoints)
 
 # If there is a PORT environment variable defined us it, otherwise use 8000
 haskey(ENV, "PORT") ? port = ENV["PORT"] : port = 8000
-# Figure out what the local IP is
-ip = IPv4(split(readstring(`hostname -I`))[1])
-# Fire up the server
-HTTP.serve(s, ip, port; verbose=false)
+# Fire up the server, binding to all ips
+HTTP.serve(s, "0.0.0.0", port; verbose=false)

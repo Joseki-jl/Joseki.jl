@@ -1,4 +1,4 @@
-using Documenter, Joseki
+using Documenter, Joseki, HTTP, JSON
 
 makedocs(
     format = :html,

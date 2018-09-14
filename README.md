@@ -2,7 +2,7 @@
 
 Want to make an API in Julia but not sure where to start?  Newer versions of [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl) have everything you need to build one from scratch, but getting started can be a bit intimidating at the moment.  Joseki.jl is a set of examples and tools to help you on your way.  It's inspired by [Mux.jl](https://github.com/JuliaWeb/Mux.jl) and [Express](https://expressjs.com/).  
 
-*Note: This package is under active development and breaking changes may occur at any time.*
+*Note: This package is under active development and breaking changes may occur at any time.  It requires Julia 1.0.*
 
 ## The basics
 
@@ -24,9 +24,7 @@ using Joseki, JSON
 # something like 'http://localhost:8000/pow/?x=2&y=3'
 function pow(req::HTTP.Request)
     j = HTTP.queryparams(HTTP.URI(req.target))
-    if !(haskey(j, "x")&haskey(j, "y"))
-        return error_responder(req, "You need to specify values for x and y!")
-    end
+    has_all_required_keys(["x", "y"], j) || return error_responder(req, "You need to specify values for x and y!")
     # Try to parse the values as numbers.  If there's an error here the generic
     # error handler will deal with it.
     x = parse(Float32, j["x"])
@@ -42,9 +40,7 @@ function bin(req::HTTP.Request)
     catch err
         return error_responder(req, "I was expecting a json request body!")
     end
-    if !(haskey(j, "n")&haskey(j, "k"))
-        return error_responder(req, "You need to specify values for n and k!")
-    end
+    has_all_required_keys(["n", "k"], j) || return error_responder(req, "You need to specify values for n and k!")
     json_responder(req, binomial(j["n"],j["k"]))
 end
 

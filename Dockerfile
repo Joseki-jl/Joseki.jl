@@ -1,17 +1,16 @@
-FROM julia:0.6.2
+FROM julia:1.0
 
-# The julia base image doesn't have it's Pkg2 directory set up.  We do this now
-# and also move it to a different folder that any user can write to.  When we
-# actually run this on a service like Heroku it won't run under the root user.
-RUN julia -e 'Pkg.init(); Pkg.add("HTTP"); Pkg.add("JSON")' \
- && mkdir /packages \
- && mkdir /packages/Joseki \
- && cp -R /root/.julia/v0.6/. /packages \
- && chmod -R a+rwx /packages
+# Here, we add the Joseki package to the docker container and then activate
+# it as an environment.  Users should create a project that includes Joseki
+# in Project.toml and add that to the container instead.
 
-ENV JULIA_PKGDIR=/packages
+# Only add Project.toml, Manifest.toml, docker-simple.jl, and /src
+ADD *.toml /Joseki/
+ADD /examples /Joseki/examples
+ADD /src /Joseki/src/
+WORKDIR /Joseki
 
-COPY /examples/docker-simple.jl /server.jl
-COPY /src /packages/Joseki/src
+# Install dependencies
+RUN julia -e 'using Pkg; pkg"activate ."; pkg"instantiate"'
 
-CMD julia /server.jl
+CMD julia --project ./examples/docker-simple.jl
