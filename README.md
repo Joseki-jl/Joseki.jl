@@ -15,7 +15,7 @@ You combine a set of middleware, endpoints, and optionally an error-handling fun
 To install Joseki.jl, run `Pkg.clone("https://github.com/amellnik/Joseki.jl.git")`.
 
 ```julia
-using Joseki, JSON
+using Joseki, JSON, HTTP
 
 ### Create some endpoints
 
