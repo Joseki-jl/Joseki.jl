@@ -36,7 +36,7 @@ function stack(fns::Array{Function, 1}, endpoint::Function;
     end
     # Once we have this function we wrap it in a HandlerFunction which is used
     # to register routes
-    return HTTP.HandlerFunction(s)
+    return HTTP.Handlers.HandlerFunction(s)
 end
 
 # TODO: Named tuples might be good here...
