@@ -54,7 +54,7 @@ function server(endpoints::Array{Tuple{T, String, String}, 1};
         HTTP.register!(router, ep[2], ep[3],
             stack(middleware, ep[1]; error_fn=error_responder))
     end
-    return HTTP.Servers.Server(router)
+    return router
 end
 
 end # End module
