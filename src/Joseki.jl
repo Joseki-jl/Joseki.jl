@@ -39,20 +39,23 @@ function stack(fns::Array{Function, 1}, endpoint::Function;
     return HTTP.Handlers.HandlerFunction(s)
 end
 
+function register!(router, method::String, url::String, handler)
+    eval(quote HTTP.@register($router, $method, $url, $handler) end)
+end
+
 # TODO: Named tuples might be good here...
 """
     Joseki.server(endpoints; middleware=default_middleware error_fn=error_responder)
 
 Construct a `HTTP.Servers.Server` from an array of `Tuples` of the form (endpoint_function, http_method, endpoint_route).
 """
-function server(endpoints::Array{Tuple{T, String, String}, 1};
+function router(endpoints::Array{Tuple{T, String, String}, 1};
         middleware=default_middleware,
         error_fn=unhandled_error_responder) where {T<:Function}
-
     router = HTTP.Router()
     for ep in endpoints
-        HTTP.register!(router, ep[2], ep[3],
-            stack(middleware, ep[1]; error_fn=error_responder))
+        register!(router, ep[2], ep[3], 
+                    stack(middleware, ep[1]; error_fn=error_responder))
     end
     return router
 end
