@@ -25,10 +25,12 @@ end
     endpoints = [
         (pow, "GET", "/pow")
     ]
-    server = Joseki.server(endpoints) # Default middleware
+    router = Joseki.router(endpoints) # Default middleware
 
     @info "Starting test server"
-    server_task = @async HTTP.serve(server, ip"127.0.0.1", 8000; verbose=false)
+    server = Sockets.listen(Sockets.InetAddr(ip"127.0.0.1", 8000))
+    server_task = @async HTTP.serve(router, ip"127.0.0.1", 8000; verbose=false, 
+                                    server = server)
     sleep(1.0)
 
     res = HTTP.get("http://localhost:8000/pow/?x=2&y=3")
@@ -37,7 +39,7 @@ end
 
     @info "Shutting down test server"
 
-    put!(server.in, HTTP.Servers.KILL)
+    close(server)
     sleep(2)
     @test istaskdone(server_task)
 end

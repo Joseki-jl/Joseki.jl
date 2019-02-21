@@ -34,9 +34,9 @@ endpoints = [
     (pow, "GET", "/pow"),
     (bin, "POST", "/bin")
 ]
-s = Joseki.server(endpoints)
+r = Joseki.router(endpoints)
 
 # If there is a PORT environment variable defined us it, otherwise use 8000
 haskey(ENV, "PORT") ? port = ENV["PORT"] : port = 8000
 # Fire up the server, binding to all ips
-HTTP.serve(s, "0.0.0.0", port; verbose=false)
+HTTP.serve(r, "0.0.0.0", port; verbose=false)

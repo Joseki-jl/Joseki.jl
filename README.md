@@ -8,7 +8,7 @@ Want to make an API in Julia but not sure where to start?  Newer versions of [HT
 
 Middleware in Joseki is any function that takes a `HTTP.Request` and modifies it (and the associated response).  Endpoints are functions that accept a `HTTP.Request` and returns a modified version of its associated `HTTP.Response`.  Typically any request is passed through the same set of middleware layers before being routed to a single endpoint.  
 
-You combine a set of middleware, endpoints, and optionally an error-handling function with `Joseki.server(endpoints; middleware=default_middleware error_fn=error_responder)` to create a `HTTP.Server`.  This can be used with standard `HTTP.jl` methods to create a server.
+You combine a set of middleware, endpoints, and optionally an error-handling function with `Joseki.router(endpoints; middleware=default_middleware error_fn=error_responder)` to create a `HTTP.Router`.  This can be used with standard `HTTP.jl` methods to create a server.
 
 ## A simple example
 
@@ -51,10 +51,10 @@ endpoints = [
     (pow, "GET", "/pow"),
     (bin, "POST", "/bin")
 ]
-s = Joseki.server(endpoints)
+r = Joseki.router(endpoints)
 
 # Fire up the server
-HTTP.serve(s, "127.0.0.1", 8000; verbose=false)
+HTTP.serve(r, "127.0.0.1", 8000; verbose=false)
 ```
 
 If you run this example you can try it out by going to http://localhost:8000/pow/?x=2&y=3.  You should see a response like:

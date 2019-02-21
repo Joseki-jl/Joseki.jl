@@ -36,7 +36,11 @@ function stack(fns::Array{Function, 1}, endpoint::Function;
     end
     # Once we have this function we wrap it in a HandlerFunction which is used
     # to register routes
-    return HTTP.HandlerFunction(s)
+    return HTTP.Handlers.HandlerFunction(s)
+end
+
+function register!(router, method::String, url::String, handler)
+    eval(quote HTTP.@register($router, $method, $url, $handler) end)
 end
 
 # TODO: Named tuples might be good here...
@@ -45,16 +49,15 @@ end
 
 Construct a `HTTP.Servers.Server` from an array of `Tuples` of the form (endpoint_function, http_method, endpoint_route).
 """
-function server(endpoints::Array{Tuple{T, String, String}, 1};
+function router(endpoints::Array{Tuple{T, String, String}, 1};
         middleware=default_middleware,
         error_fn=unhandled_error_responder) where {T<:Function}
-
     router = HTTP.Router()
     for ep in endpoints
-        HTTP.register!(router, ep[2], ep[3],
-            stack(middleware, ep[1]; error_fn=error_responder))
+        register!(router, ep[2], ep[3], 
+                    stack(middleware, ep[1]; error_fn=error_responder))
     end
-    return HTTP.Servers.Server(router)
+    return router
 end
 
 end # End module
