@@ -1,6 +1,6 @@
 using Documenter, Joseki, HTTP, JSON
 
 makedocs(
-    format = :html,
+    format = Documenter.HTML(),
     sitename = "Joseki.jl"
 )
