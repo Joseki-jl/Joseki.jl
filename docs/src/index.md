@@ -16,8 +16,7 @@ You can see a simple example in the main [Readme.md](https://github.com/amellnik
 ## Basics
 
 ```@docs
-Joseki.server(endpoints::Array{Tuple{T, String, String}, 1};        middleware=default_middleware, error_fn=unhandled_error_responder) where {T<:Function}
-stack(fns::Array{Function, 1}, endpoint::Function;               error_fn=unhandled_error_responder)
+Joseki.router(endpoints::Array{Tuple{T, String, String}, 1}; middleware=default_middleware, error_fn=unhandled_error_responder) where {T<:Function}
 ```
 
 ## Middleware
