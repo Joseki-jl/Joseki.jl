@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Joseki = "b588beb9-536a-5a7d-a241-c127386fde06"
+
+[compat]
+Documenter = "~0.22"
