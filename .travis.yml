@@ -15,7 +15,6 @@ jobs:
         - julia --project=docs/ docs/make.jl
       after_success:
         - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
-        - curl --ftp-create-dirs
-              -T filename
+        - find build -type f -exec curl -u xxx:psw --ftp-create-dirs -T {}
               --key /tmp/sftp_rsa
-              sftp://${SFTP_USER}:${SFTP_PASSWORD}@joseki.gotfork.net/joseki.gotfork.net
+              sftp://${SFTP_USER}:${SFTP_PASSWORD}@joseki.gotfork.net/joseki.gotfork.net/{} \;
