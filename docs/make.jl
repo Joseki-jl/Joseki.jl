@@ -6,5 +6,5 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/amellnik/joseki.jl.git",
+    repo = "github.com/amellnik/Joseki.jl.git",
 )
