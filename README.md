@@ -4,7 +4,7 @@ Want to make an API in Julia but not sure where to start?  Newer versions of [HT
 
 |            **Documentation**            |                       **Build Status**                        |
 | :-------------------------------------: | :-----------------------------------------------------------: |
-| [![][docs-stable-img]][docs-stable-url] | [![][travis-img]][travis-url] [![][codecov-img]][codecov-url] |
+| [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![][travis-img]][travis-url] [![][codecov-img]][codecov-url] |
 
 ## The basics
 
@@ -106,8 +106,11 @@ docker run --rm -p 8000:8000 -it --entrypoint=/bin/bash joseki
 How you deploy it will depend on your hosting provider.  When you deploy your own API you may need to modify the julia server file and/or the Dockerfile to add additional dependencies.  
 
 
-[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
-[docs-stable-url]: http://joseki.gotfork.net/
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-green.svg
+[docs-stable-url]: https://amellnik.github.io/Joseki.jl/stable/
+
+[docs-latest-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-latest-url]: https://amellnik.github.io/Joseki.jl/latest/
 
 [travis-img]: https://travis-ci.com/amellnik/Joseki.jl.svg?branch=master
 [travis-url]: https://travis-ci.com/amellnik/Joseki.jl
