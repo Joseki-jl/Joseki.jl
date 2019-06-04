@@ -45,7 +45,7 @@ end
 
 # TODO: Named tuples might be good here...
 """
-    Joseki.server(endpoints; middleware=default_middleware error_fn=error_responder)
+    Joseki.router(endpoints; middleware=default_middleware, error_fn=error_responder)
 
 Construct a `HTTP.Servers.Server` from an array of `Tuples` of the form (endpoint_function, http_method, endpoint_route).
 """
