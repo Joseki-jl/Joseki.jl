@@ -13,8 +13,4 @@ jobs:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
                                                Pkg.instantiate()'
         - julia --project=docs/ docs/make.jl
-      after_success:
-        - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
-        - find ./docs/build -type f -exec curl -u xxx:psw --ftp-create-dirs -T {}
-              --key /tmp/sftp_rsa
-              sftp://${SFTP_USER}:${SFTP_PASSWORD}@joseki.gotfork.net/joseki.gotfork.net/{} \;
+      after_success: skip
