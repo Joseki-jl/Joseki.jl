@@ -109,7 +109,7 @@ How you deploy it will depend on your hosting provider.  When you deploy your ow
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-green.svg
 [docs-stable-url]: https://amellnik.github.io/Joseki.jl/stable/
 
-[docs-latest-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
 [docs-latest-url]: https://amellnik.github.io/Joseki.jl/latest/
 
 [travis-img]: https://travis-ci.com/amellnik/Joseki.jl.svg?branch=master
