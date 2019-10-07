@@ -32,7 +32,7 @@ function hit_logger!(req::HTTP.Request)
 end
 
 """
-Log the request body.
+Log the request body.  Use with care, as the request body could be very large.
 """
 function body_logger!(req::HTTP.Request)
     println(String(copy(req.body)))
