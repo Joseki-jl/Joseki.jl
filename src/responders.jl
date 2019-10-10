@@ -50,7 +50,7 @@ The response will look like:
 ```
 {
     "error": true,
-    "result": "You need to pass variables named x and y in the query string"
+    "message": "You need to pass variables named x and y in the query string"
 }
 ```
 """
@@ -85,12 +85,12 @@ end
 
 export critical_error_responder
 """
-    critical_error_responder(req::HTTP.Request,e::Exception)
+    critical_error_responder(req::HTTP.Request, e::Exception)
 
 Respond with a 500 error response.
 """
 function critical_error_responder(req::HTTP.Request, e::Exception)
     @warn string("Critical error!  Returning a 500 response to the client: ", string(e))
-    setstatus(req.response, 500)
+    req.response.status = 500
     return req.response
 end
