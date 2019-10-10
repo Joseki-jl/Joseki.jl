@@ -3,7 +3,7 @@
 
 using Test, Joseki, JSON
 
-@testset "Test included dockerfile" begin
+@testset "Test sample dockerfile" begin
     @info "Starting server from included dockerfile"
     cd(dirname(@__FILE__))
     cd("../")
