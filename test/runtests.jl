@@ -12,6 +12,7 @@ function sample_request()
 end
 
 include("utilities-tests.jl")
+include("middleware-tests.jl")
 include("responders-tests.jl")
 include("integration-tests.jl")
 include("dockerfile-tests.jl")
