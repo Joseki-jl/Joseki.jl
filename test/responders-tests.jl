@@ -17,4 +17,14 @@ import HTTP.IOExtras.bytes
     expected = Dict{String, Any}("error" => true, "message" => "error goes here")
     res = Joseki.error_responder(req, "error goes here")
     @test JSON.parse(String(res.body)) == expected
+
+    req = sample_request()
+    res = Joseki.error_responder(req, DivideError())
+    # Don't worry about the particular message
+    @test JSON.parse(String(res.body))["error"]
+
+    req = sample_request()
+    res = Joseki.critical_error_responder(req, DivideError())
+    # Don't worry about the particular message
+    @test res.status == 500
 end
