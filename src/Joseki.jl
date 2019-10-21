@@ -54,8 +54,8 @@ function router(endpoints::Array{Tuple{T, String, String}, 1};
         error_fn=unhandled_error_responder) where {T<:Function}
     router = HTTP.Router()
     for ep in endpoints
-        register!(router, ep[2], ep[3], 
-                    stack(middleware, ep[1]; error_fn=error_responder))
+        register!(router, ep[2], ep[3],
+                    stack(middleware, ep[1]; error_fn=error_fn))
     end
     return router
 end
