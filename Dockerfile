@@ -1,4 +1,4 @@
-FROM julia:1.2
+FROM julia:1.3
 
 # Here, we add the Joseki package to the docker container and then activate
 # it as an environment.  Users should create a project that includes Joseki
