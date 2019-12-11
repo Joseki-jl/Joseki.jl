@@ -21,3 +21,7 @@ gcloud run deploy --image gcr.io/joseki/simple_joseki_server --platform managed 
 
 Make sure to answer `Y` to the "Allow unauthenticated invocations to...".  It should report a URL
 that you can go to and see that the API is working.  
+
+## Disclaimer
+
+The primary author of this package is a Google employee, but this is not an official Google product or endorsed by Google in any way.  
