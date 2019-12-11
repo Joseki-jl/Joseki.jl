@@ -33,7 +33,7 @@ end
 endpoints = [
     (pow, "GET", "/pow"),
     (bin, "POST", "/bin"),
-    (r -> r.response, "GET", "/") # For health checks
+    (r -> HTTP.Response(200, "Joseki is online!"), "GET", "/") # For health checks
 ]
 router = Joseki.router(endpoints)
 

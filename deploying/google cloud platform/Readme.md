@@ -7,14 +7,17 @@ the "Before you begin" steps there.
 ## Building the container
 
 Assuming your project is called `joseki` and you want to deploy the project as
-`simple_joseki_server` you can use the Google cloud SDK to submit and build the container remotely.  
+`simple_joseki_server` you can use the Google cloud SDK to submit and build the container remotely:  
 
 ```shell
 gcloud builds submit --tag gcr.io/joseki/simple_joseki_server
 ```
 
-After it finishes, you can deploy the result with
+After it finishes, you can deploy the result with:
 
 ```shell
-gcloud run deploy --image gcr.io/joseki/simple_joseki_server --platform managed
+gcloud run deploy --image gcr.io/joseki/simple_joseki_server --platform managed --memory 512Mi
 ```
+
+Make sure to answer `Y` to the "Allow unauthenticated invocations to...".  It should report a URL
+that you can go to and see that the API is working.  

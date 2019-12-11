@@ -12,7 +12,8 @@ server_task = @async HTTP.serve(router, ip"127.0.0.1", 8000; verbose=false,
 
 @info "Exercising the endpoints"
 
-# Exercise the two endpoints
+# Exercise the two endpoints.  This is not necessisary here, but you might want to do something like
+# this if the first request to an endpoint is slow.  
 HTTP.get("http://localhost:8000/pow/?x=2&y=3")
 params = Dict("n" => 4, "k" => 3)
 HTTP.post("http://localhost:8000/bin", 
