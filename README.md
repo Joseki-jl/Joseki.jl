@@ -75,7 +75,15 @@ should see a response like:
 {"error": false, "result": 8.0}
 ```
 
-In order to test the 2nd endpoint, you can make a POST request with cURL:
+In order to test the 2nd endpoint, you can make a POST request from within a different Julia
+session:
+
+```julia
+using HTTP, JSON
+HTTP.post("http://localhost/bin", [], JSON.json(Dict("n" => 4, "k" => 3)))
+```
+
+You can also do this from the command line with cURL:
 
 ```shell
 curl -X POST \
@@ -85,7 +93,7 @@ curl -X POST \
   -d '{"n": 4, "k": 3}'
 ```
 
-or use a tool like [Postman](https://www.getpostman.com/), or do it from within Julia.
+or use a tool like [Postman](https://www.getpostman.com/).
 
 ## Next steps
 
@@ -116,8 +124,9 @@ to start the server.  If you need to debug anything you can start an interactive
 docker run --rm -p 8000:8000 -it --entrypoint=/bin/bash joseki
 ```
 
-How you deploy it will depend on your hosting provider.  When you deploy your own API you may need
-to modify the julia server file and/or the Dockerfile to add additional dependencies.  
+This runs Joseki from within its own package environment, but a more common use case would be to
+create a new project that adds Joseki as a dependency.  You can find dockerfiles that do this and
+also detailed instructions for deploying on some common cloud platforms in the `deploying` folder.  
 
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-green.svg
