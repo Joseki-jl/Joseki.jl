@@ -38,6 +38,6 @@ endpoints = [
 router = Joseki.router(endpoints)
 
 # If there is a PORT environment variable defined us it, otherwise use 8000
-haskey(ENV, "PORT") ? port = ENV["PORT"] : port = 8000
+haskey(ENV, "PORT") ? port = parse(Int64, ENV["PORT"]) : port = 8000
 
 # We intentionally do not start the server here
