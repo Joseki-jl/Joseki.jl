@@ -125,8 +125,7 @@ docker run --rm -p 8000:8000 -it --entrypoint=/bin/bash joseki
 ```
 
 This runs Joseki from within its own package environment, but a more common use case would be to
-create a new project that adds Joseki as a dependency.  You can find dockerfiles that do this and
-also detailed instructions for deploying on some common cloud platforms in the `deploying` folder.  
+create a new project that adds Joseki as a dependency.  You can find examples that do this in separate repositories within the [Joseki org](https://github.com/Joseki-jl).  
 
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-green.svg
