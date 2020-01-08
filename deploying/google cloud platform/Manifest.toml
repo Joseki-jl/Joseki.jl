@@ -39,6 +39,12 @@ git-tree-sha1 = "b34d7cef7b337321e97d22242c3c2b91f476748e"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 version = "0.21.0"
 
+[[Joseki]]
+deps = ["Dates", "HTTP", "JSON", "Sockets", "Test"]
+git-tree-sha1 = "c97887cf3d9b6e29ebb10902f0c8a77de226fd56"
+uuid = "b588beb9-536a-5a7d-a241-c127386fde06"
+version = "0.2.1"
+
 [[Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 
