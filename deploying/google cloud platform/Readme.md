@@ -24,4 +24,5 @@ that you can go to and see that the API is working.
 
 ## Disclaimer
 
-The primary author of this package is a Google employee, but this is not an official Google product or endorsed by Google in any way.  
+The primary author of this package is a Google employee, but this is not an official Google product
+or endorsed by Google in any way.  
