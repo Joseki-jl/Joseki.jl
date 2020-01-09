@@ -6,6 +6,8 @@ but getting started can be a bit intimidating at the moment.  Joseki.jl is a set
 tools to help you on your way.  It's inspired by [Mux.jl](https://github.com/JuliaWeb/Mux.jl) and
 [Express](https://expressjs.com/).  
 
+Add it to your project with `] add Joseki` from the REPL, or `using Pkg; Pkg.add("Joseki")`.
+
 |            **Documentation**            |                       **Build Status**                        |
 | :-------------------------------------: | :-----------------------------------------------------------: |
 | [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![][travis-img]][travis-url] [![][codecov-img]][codecov-url] |
@@ -22,8 +24,6 @@ You combine a set of middleware, endpoints, and optionally an error-handling fun
 `HTTP.Router`.  This can be used with standard `HTTP.jl` methods to create a server.
 
 ## A simple example
-
-To install Joseki.jl, run `Pkg.clone("https://github.com/amellnik/Joseki.jl.git")`.
 
 ```julia
 using Joseki, JSON, HTTP
