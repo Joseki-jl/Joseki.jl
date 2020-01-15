@@ -129,13 +129,13 @@ create a new project that adds Joseki as a dependency.  You can find examples th
 
 
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-green.svg
-[docs-stable-url]: https://amellnik.github.io/Joseki.jl/stable/
+[docs-stable-url]: https://joseki-jl.github.io/Joseki.jl/stable/
 
 [docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
-[docs-latest-url]: https://amellnik.github.io/Joseki.jl/latest/
+[docs-latest-url]: https://joseki-jl.github.io/Joseki.jl/latest/
 
-[travis-img]: https://travis-ci.com/amellnik/Joseki.jl.svg?branch=master
-[travis-url]: https://travis-ci.com/amellnik/Joseki.jl
+[travis-img]: https://travis-ci.com/joseki-jl/Joseki.jl.svg?branch=master
+[travis-url]: https://travis-ci.com/joseki-jl/Joseki.jl
 
-[codecov-img]: https://codecov.io/gh/amellnik/Joseki.jl/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/amellnik/Joseki.jl
+[codecov-img]: https://codecov.io/gh/joseki-jl/Joseki.jl/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/joseki-jl/Joseki.jl
