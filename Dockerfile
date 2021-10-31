@@ -1,4 +1,4 @@
-FROM julia:1.3
+FROM julia:1.6
 
 # Here, we add the Joseki package to the docker container and then activate
 # it as an environment.  Users should create a project that includes Joseki
@@ -11,6 +11,6 @@ ADD /src /Joseki/src/
 WORKDIR /Joseki
 
 # Install dependencies
-RUN julia -e 'using Pkg; pkg"activate ."; pkg"instantiate"'
+RUN julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 
 CMD julia --project ./examples/docker-simple.jl
