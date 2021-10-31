@@ -1,7 +1,7 @@
 name = "Joseki"
 uuid = "b588beb9-536a-5a7d-a241-c127386fde06"
 author = ["Alex Mellnik <a.r.mellnik@gmail.com>"]
-version = "0.2.1"
+version = "0.2.2"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
