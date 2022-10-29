@@ -1,4 +1,7 @@
-# Joseki.jl
+# Joseki.jl - no longer maintained
+
+*Joseki.jl is not longer maintained. For a similar framework that works with the latest versions of the HTTP library I recommend [Oxygen.jl](https://github.com/ndortega/Oxygen.jl).*
+
 
 Want to make an API in Julia but not sure where to start?  Newer versions of 
 [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl) have everything you need to build one from scratch,
@@ -8,8 +11,8 @@ tools to help you on your way.  It's inspired by [Mux.jl](https://github.com/Jul
 
 Add it to your project with `] add Joseki` from the REPL, or `using Pkg; Pkg.add("Joseki")`.
 
-|            **Documentation**            |                       **Build Status**                        |
-| :-------------------------------------: | :-----------------------------------------------------------: |
+|                                **Documentation**                                |                       **Build Status**                        |
+| :-----------------------------------------------------------------------------: | :-----------------------------------------------------------: |
 | [![][docs-stable-img]][docs-stable-url] [![][docs-latest-img]][docs-latest-url] | [![][travis-img]][travis-url] [![][codecov-img]][codecov-url] |
 
 ## The basics
